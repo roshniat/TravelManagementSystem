@@ -1,0 +1,160 @@
+<form class="reqform" #form="ngForm" autocomplete="off"
+(ngSubmit)="onSubmit(form)">
+
+    <!--Request ID-->
+    <input type="hidden" name="RequestId" [(ngModel)]="requestService.formData.RequestId" />
+
+    <!--FirstName dropdown-->
+    <div class="form-group">
+        <label class="col-md-4">FirstName</label>
+        <select name="EmpId" id="EmpId" class="form-control" #EmpId="ngModel" required
+            [(ngModel)]="requestService.formData.EmpId">
+            <option value="" disabled>FirstName</option>
+            <option *ngFor="let emp of requestService.employees"
+             value="{{emp.EmpId}}">{{emp.FirstName}}</option>
+            
+
+        </select>
+        <div class="validation-error" *ngIf="EmpId.touched && EmpId.invalid">
+            <div *ngIf="EmpId.errors.required">FirstName is required</div>
+        </div>
+    </div>
+
+    <!--Project dropdown-->
+    <div class="form-group">
+        <label class="col-md-4">Project</label>
+        <select name="ProjectId" id="ProjectId" class="form-control" #ProjectId="ngModel" required
+            [(ngModel)]="requestService.formData.ProjectId">
+            <option value=0 disabled>Choose Project</option>
+            <option *ngFor="let p of requestService.projects"
+             value="{{p.ProjectId}}">{{p.ProjectName}}</option>
+            
+
+        </select>
+        <div class="validation-error" *ngIf="ProjectId.touched && ProjectId.invalid">
+            <div *ngIf="ProjectId.errors.required">Project is required</div>
+        </div>
+    </div>
+
+    <!--Cause travel-->
+    <div class="form-group">
+        <label>Cause of Travel</label>
+        <input name="CauseTravel" #CauseTravel="ngModel" [(ngModel)]="requestService.formData.CauseTravel"
+            class="form-control" placeholder="Enter cause of travel" minlength="2" maxlength="100" required
+            [ngClass]="{'is-invalid':CauseTravel.touched && CauseTravel.invalid}" />
+        <div class="validation-error" *ngIf="CauseTravel.touched && CauseTravel.invalid">
+            <div *ngIf="CauseTravel.errors.required">Cause for travel is required</div>
+        </div>
+
+    </div>
+
+    <!--Source-->
+    <div class="form-group">
+        <label>Source</label>
+        <input name="Source" #Source="ngModel" [(ngModel)]="requestService.formData.Source"
+            class="form-control" placeholder="Enter Source" minlength="2" maxlength="25" required
+            [ngClass]="{'is-invalid':Source.touched && Source.invalid}" />
+        <div class="validation-error" *ngIf="Source.touched && Source.invalid">
+            <div *ngIf="Source.errors.required">Source is required</div>
+        </div>
+
+    </div>
+
+    <!--Destination-->
+    <div class="form-group">
+        <label>Destination</label>
+        <input name="Destination" #Destination="ngModel" [(ngModel)]="requestService.formData.Destination"
+            class="form-control" placeholder="Enter destination" minlength="2" maxlength="25" required
+            [ngClass]="{'is-invalid':Destination.touched && Destination.invalid}" />
+        <div class="validation-error" *ngIf="Destination.touched && Destination.invalid">
+            <div *ngIf="Destination.errors.required">Destination is required</div>
+        </div>
+
+    </div>
+
+    <!--Mode-->
+    <div class="form-group">
+        <label>Mode of travel</label>
+        <input name="Mode" #Mode="ngModel" [(ngModel)]="requestService.formData.Mode"
+            class="form-control" placeholder="Enter mode of travel" minlength="2" maxlength="25" required
+            [ngClass]="{'is-invalid':Mode.touched && Mode.invalid}" />
+        <div class="validation-error" *ngIf="Mode.touched && Mode.invalid">
+            <div *ngIf="Mode.errors.required">Mode of travel is required</div>
+        </div>
+
+    </div>
+
+     <!--From date-->
+     <div class="form-group">
+        <label>From Date</label>
+        <input type="date" name="FromDate" id="FromDate" #FromDate="ngModel"
+            [(ngModel)]="requestService.formData.FromDate" class="form-control" required
+            [ngClass]="{'is-invalid':FromDate.touched && FromDate.invalid}" />
+        <div class="validation-error" *ngIf="FromDate.touched && FromDate.invalid">
+            <div *ngIf="FromDate.errors.required">From date is required</div>
+        </div>
+
+    </div>
+
+     <!--To date-->
+     <div class="form-group">
+        <label>To Date</label>
+        <input type="date" name="ToDate" id="ToDate" #ToDate="ngModel"
+            [(ngModel)]="requestService.formData.ToDate" class="form-control" required
+            [ngClass]="{'is-invalid':ToDate.touched && ToDate.invalid}" />
+        <div class="validation-error" *ngIf="ToDate.touched && ToDate.invalid">
+            <div *ngIf="ToDate.errors.required">To date is required</div>
+        </div>
+
+    </div>
+
+    <!--No of days-->
+    <div class="form-group">
+        <label>No of Days</label>
+        <input name="NoDays" #NoDays="ngModel" [(ngModel)]="requestService.formData.NoDays"
+            class="form-control" placeholder="Enter no of days" minlength="1" maxlength="25" required
+            [ngClass]="{'is-invalid':NoDays.touched && NoDays.invalid}" />
+        <div class="validation-error" *ngIf="NoDays.touched && NoDays.invalid">
+            <div *ngIf="NoDays.errors.required">No of days is required</div>
+        </div>
+
+    </div>
+
+    <!--Priority dropdown-->
+    <div class="form-group">
+        <label class="col-md-4">Priority</label>
+        <select name="Priority" id="Priority" class="form-control" #Priority="ngModel" required
+            [(ngModel)]="requestService.formData.Priority">
+            <option value="" disabled>Choose Priority</option>
+            <option value="normal">Normal</option>
+            <option value="critical">Critical</option>
+        </select>
+        <div class="validation-error" *ngIf="Priority.touched && Priority.invalid">
+            <div *ngIf="Priority.errors.required">Priority is required</div>
+        </div>
+    </div>
+
+     <!--Status dropdown-->
+     <div class="form-group">
+        <label class="col-md-4">Status</label>
+        <select name="Status" id="Status" class="form-control" #Status="ngModel" required
+            [(ngModel)]="requestService.formData.Status">
+            <option value="" disabled>Choose Status</option>
+            <option value="Requested">Requested</option>
+            
+        </select>
+        <div class="validation-error" *ngIf="Status.touched && Status.invalid">
+            <div *ngIf="Status.errors.required">Status is required</div>
+        </div>
+    </div>
+
+     <!--Submit button-->
+     <br>
+     <div class="form-group">
+         <button type="submit" [disabled]="!(form.valid && form.dirty)"
+             class="btn-btn-lg btn-primary form-control">Submit</button>
+     </div>
+ </form>
+
+
+

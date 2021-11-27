@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="header">
+        <h5>Request Info</h5>
+        <!--Search functionality>
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="Search here... " [(ngModel)]="filter" />
+
+        </div-->
+        <!--a [routerLink]="['../employee']" class="btn btn-primary" style="float:right;margin-bottom: 10px;">Add Employee</a-->
+        <!--button class="btn btn-primary" style="float:right;margin-bottom: 10px;">Add Employee</button-->
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Empoloyee ID</th>
+                <th>Cause Travel</th>
+                <th>From Date</th>
+                <th>To Date</th>
+                <th>Mode</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>No of Days</th>
+                <th>Project ID</th>
+                <th>Priority</th>
+                <th>Status</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let req of requestService.requests">
+                <td (click)="populateForm(req)">{{req.RequestId}}</td>
+                <td (click)="populateForm(req)">{{req.EmpId}}</td>
+                <td (click)="populateForm(req)">{{req.CauseTravel}}</td>
+                <td (click)="populateForm(req)">{{req.FromDate | date:'dd-MM-yyyy'}}</td>
+                <td (click)="populateForm(req)">{{req.ToDate}}</td>
+                <td (click)="populateForm(req)">{{req.Mode}}</td>
+                <td (click)="populateForm(req)">{{req.Source}}</td>
+                <td (click)="populateForm(req)">{{req.Destination}}</td>
+                <td (click)="populateForm(req)">{{req.NoDays}}</td>
+                <td (click)="populateForm(req)">{{req.ProjectId}}</td>
+                <td (click)="populateForm(req)">{{req.Priority}}</td>
+                <td (click)="populateForm(req)">{{req.Status}}</td>
+
+                <td>
+
+
+                    <button (click)="updateRequest(req.RequestId)" class="btn btn-info"
+                        style="margin-left: 10px;">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="footer">
+        <!--pagination>
+        <pagination-controls (pageChange)="page=($event)"></pagination-controls>
+    </div-->
+    </div>
